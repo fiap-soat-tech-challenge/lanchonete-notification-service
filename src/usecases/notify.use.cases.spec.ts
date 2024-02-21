@@ -54,12 +54,10 @@ describe('NotifyUseCases', () => {
 
       const cpf = '12345678901';
       const cliente: Cliente = new Cliente(
-        1,
         cpf,
         'John Doe',
         'john.doe@example.com',
         '123456789',
-        new Date(),
       );
 
       jest.spyOn(orderService, 'getCpfClienteByOrderId').mockResolvedValue(cpf);
