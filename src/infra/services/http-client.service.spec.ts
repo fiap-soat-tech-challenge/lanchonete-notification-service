@@ -150,5 +150,22 @@ describe('HttpClientService', () => {
         data: requestData,
       });
     });
+
+    it('should throw an error for generic error', async () => {
+      const genericError = new Error('Some generic error');
+
+      (axios.request as jest.Mock).mockRejectedValueOnce(genericError);
+
+      try {
+        await httpClientService.makeRequest('GET', 'https://example.com');
+      } catch (error) {
+        expect(error).toEqual(new Error('Error making HTTP request'));
+        expect(axios.request).toHaveBeenCalledWith({
+          method: 'GET',
+          url: 'https://example.com',
+          data: null,
+        });
+      }
+    });
   });
 });
