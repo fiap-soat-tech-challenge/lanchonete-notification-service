@@ -17,8 +17,8 @@ export class ClientsServiceImpl implements ClientsService {
       `${clientsUrl}/api/clientes/${clienteCpf}`,
     );
     return new Cliente(
-      response.data.nome,
       response.data.cpf,
+      response.data.nome,
       response.data.email,
       response.data.telefone,
     );
