@@ -100,5 +100,20 @@ describe('NotifyUseCases', () => {
         pedido.pedidoId,
       );
     });
+
+    it('should generate the correct message for RECUSADO status', () => {
+      const pedido: Pedido = {
+        pedidoId: 1,
+        pagamentoId: 'payment123',
+        valorTotal: 100,
+        status: 'RECUSADO',
+      };
+
+      const expectedResult = `[Recusado] O pagamento do pedido com Id [${pedido.pedidoId}] foi recusado! Por favor verifique o pagamento.`;
+
+      const result = notifyUseCases['_getMessage'](pedido);
+
+      expect(result).toEqual(expectedResult);
+    });
   });
 });
